@@ -9,6 +9,7 @@ import java.util.ArrayList;
 public class Config implements Serializable {
     public static ArrayList<Integer> tcpPorts = new ArrayList<>();
     public static ArrayList<Integer> udpPorts = new ArrayList<>();
+    public static int refreshIntervalMinutes = 30; // Default: 30 minutes
 
     private static final Path CONFIG_FILE = Paths.get("config", "upnp.txt");
 
@@ -24,6 +25,17 @@ public class Config implements Serializable {
                         tcpPorts.add(Integer.valueOf(line.substring(4)));
                     } else if (line.startsWith("UDP ")) {
                         udpPorts.add(Integer.valueOf(line.substring(4)));
+                    } else if (line.startsWith("REFRESH_INTERVAL ")) {
+                        try {
+                            refreshIntervalMinutes = Integer.valueOf(line.substring(17).trim());
+                            if (refreshIntervalMinutes < 0) {
+                                DedicatedMcUpnp.LOGGER.warn("Invalid refresh interval: {}. Using default of 30 minutes.", refreshIntervalMinutes);
+                                refreshIntervalMinutes = 30;
+                            }
+                        } catch (NumberFormatException e) {
+                            DedicatedMcUpnp.LOGGER.error("Malformed refresh interval. Using default of 30 minutes.", e);
+                            refreshIntervalMinutes = 30;
+                        }
                     } else {
                         createDefaultConfig();
                         DedicatedMcUpnp.LOGGER.error("Invalid config entry: {}", line);
