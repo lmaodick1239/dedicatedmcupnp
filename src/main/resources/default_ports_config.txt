@@ -5,3 +5,8 @@ TCP 25565
 # TCP 25565 - Default port for Minecraft servers
 # UDP 24454 - Default port for Simple Voice Chat
 # UDP 19132 - Default port for Bedrock Edition servers
+
+# Refresh interval in minutes (how often to refresh UPnP mappings)
+# Set to 0 to disable periodic refresh. Default: 30 minutes
+# Some routers may expire UPnP mappings over time, so periodic refresh helps maintain them
+REFRESH_INTERVAL 30
