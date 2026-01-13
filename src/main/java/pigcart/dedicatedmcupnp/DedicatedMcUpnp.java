@@ -156,6 +156,7 @@ public class DedicatedMcUpnp {
                         refreshScheduler.shutdownNow();
                     }
                 } catch (InterruptedException e) {
+                    LOGGER.warn("UPnP refresh scheduler shutdown was interrupted", e);
                     refreshScheduler.shutdownNow();
                     Thread.currentThread().interrupt();
                 }

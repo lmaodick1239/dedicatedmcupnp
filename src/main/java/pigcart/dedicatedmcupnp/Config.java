@@ -33,7 +33,7 @@ public class Config implements Serializable {
                                 refreshIntervalMinutes = 30;
                             }
                         } catch (NumberFormatException e) {
-                            DedicatedMcUpnp.LOGGER.error("Malformed refresh interval. Using default of 30 minutes. {}", String.valueOf(e));
+                            DedicatedMcUpnp.LOGGER.error("Malformed refresh interval. Using default of 30 minutes.", e);
                             refreshIntervalMinutes = 30;
                         }
                     } else {
