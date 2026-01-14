@@ -38,6 +38,7 @@ stonecutter {
         mc("1.20.6", loaders = listOf("neoforge"))
         mc("1.20.1", loaders = listOf("fabric")) // forge is bugged
         mc("1.19.4", loaders = listOf("fabric"))
+        mc("1.21.8", loaders = listOf("fabric"))
 
         // This is the default target.
         // https://stonecutter.kikugie.dev/stonecutter/guide/setup#settings-settings-gradle-kts
